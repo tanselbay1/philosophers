@@ -6,7 +6,7 @@
 /*   By: tanselbayraktaroglu <tanselbayraktarogl    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 14:59:57 by tanselbayra       #+#    #+#             */
-/*   Updated: 2025/04/07 20:58:04 by tanselbayra      ###   ########.fr       */
+/*   Updated: 2025/04/08 12:32:15 by tanselbayra      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_data
 	pthread_mutex_t print;
 	pthread_mutex_t death;
 	pthread_mutex_t forks_lock;
+	pthread_t monitor_thread;
 } t_data;
 
 typedef struct s_philo

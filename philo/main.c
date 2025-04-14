@@ -6,7 +6,7 @@
 /*   By: tanselbayraktaroglu <tanselbayraktarogl    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 15:15:12 by tanselbayra       #+#    #+#             */
-/*   Updated: 2025/04/07 20:09:24 by tanselbayra      ###   ########.fr       */
+/*   Updated: 2025/04/14 14:00:50 by tanselbayra      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ static int start_simulation(t_data *data, t_philo *philos)
 			return (error_msg("Failed to create thread\n"));
 		i++;
 	}
+	usleep(1000); // Small delay to ensure all philosopher threads start
+	if (pthread_create(&data->monitor_thread, NULL, monitor, philos) != 0)
+		return (error_msg("Failed to create monitor thread\n"));
 	return (0);
 }
 
@@ -37,6 +40,7 @@ static void wait_for_threads(t_data *data, t_philo *philos)
 		pthread_join(philos[i].thread, NULL);
 		i++;
 	}
+	pthread_join(data->monitor_thread, NULL);
 }
 
 int main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: tanselbayraktaroglu <tanselbayraktarogl    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 15:38:07 by tanselbayra       #+#    #+#             */
-/*   Updated: 2025/04/07 16:34:04 by tanselbayra      ###   ########.fr       */
+/*   Updated: 2025/04/14 13:54:24 by tanselbayra      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void init_philos(t_data *data, t_philo *philos)
 	{
 		philos[i].id = i + 1;
 		philos[i].meals_eaten = 0;
-		philos[i].last_meal = 0;
+		philos[i].last_meal = get_time_ms();
 		philos[i].data = data;
 		philos[i].left_fork = &data->forks[i];
 		philos[i].right_fork = &data->forks[(i + 1) % data->n_philos];
@@ -52,6 +52,7 @@ static void init_philos(t_data *data, t_philo *philos)
 int init_all(t_data *data, t_philo **philos_out)
 {
 	data->dead = 0;
+	data->full_count = 0;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philos);
 	if (!data->forks)
 		return (error_msg("Failed to allocate forks\n"));

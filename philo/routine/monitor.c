@@ -6,7 +6,7 @@
 /*   By: tanselbayraktaroglu <tanselbayraktarogl    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:57:09 by tanselbayra       #+#    #+#             */
-/*   Updated: 2025/04/07 20:01:54 by tanselbayra      ###   ########.fr       */
+/*   Updated: 2025/04/14 14:23:49 by tanselbayra      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 static int philo_died(t_philo *philo)
 {
     long now;
+    long last_meal;
 
     now = get_time_ms();
     pthread_mutex_lock(&philo->data->death);
-    if (now - philo->last_meal > philo->data->time_to_die)
+    last_meal = philo->last_meal;
+    pthread_mutex_unlock(&philo->data->death);
+    if (now - last_meal > philo->data->time_to_die)
     {
         philo->data->dead = 1;
         pthread_mutex_unlock(&philo->data->death);
@@ -52,9 +55,10 @@ void *monitor(void *arg)
     t_data *data;
     int i;
 
+    i = 0;
     philos = (t_philo *)arg;
-    data = philos[0].data;
-    while (!check_death(&philos[0]))
+    data = philos[i].data;
+    while (1)
     {
         i = 0;
         while (i < data->n_philos)
@@ -68,6 +72,7 @@ void *monitor(void *arg)
             pthread_mutex_lock(&data->death);
             data->dead = 1;
             pthread_mutex_unlock(&data->death);
+            printf("All philosophers have finished their meals. Simulation ending.\n"); // Debugging log
             return (NULL);
         }
         usleep(1000);
