@@ -1,2 +1,4 @@
 *.o
 test.sh
+LazyPhilosophersTester
+.vscode
