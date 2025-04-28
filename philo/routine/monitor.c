@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanselbayraktaroglu <tanselbayraktarogl    +#+  +:+       +#+        */
+/*   By: tanselbay1 <tanselbay1@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:57:09 by tanselbayra       #+#    #+#             */
-/*   Updated: 2025/04/14 14:23:49 by tanselbayra      ###   ########.fr       */
+/*   Updated: 2025/04/28 18:09:09 by tanselbay1       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int philo_died(t_philo *philo)
     now = get_time_ms();
     pthread_mutex_lock(&philo->data->death);
     last_meal = philo->last_meal;
-    pthread_mutex_unlock(&philo->data->death);
     if (now - last_meal > philo->data->time_to_die)
     {
         philo->data->dead = 1;
@@ -28,9 +27,15 @@ static int philo_died(t_philo *philo)
         pthread_mutex_lock(&philo->data->print);
         printf("%ld %d died\n", now - philo->data->start_time, philo->id);
         pthread_mutex_unlock(&philo->data->print);
+
+        // Ensure all locks are released before returning
+        // pthread_mutex_unlock(philo->left_fork);
+        // pthread_mutex_unlock(philo->right_fork);
+
         return (1);
     }
-    pthread_mutex_unlock(&philo->data->death);
+    else
+        pthread_mutex_unlock(&philo->data->death);
     return (0);
 }
 
@@ -75,7 +80,7 @@ void *monitor(void *arg)
             printf("All philosophers have finished their meals. Simulation ending.\n"); // Debugging log
             return (NULL);
         }
-        usleep(1000);
+        usleep(200);
     }
     return (NULL);
 }
