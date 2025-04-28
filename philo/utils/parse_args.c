@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanselbayraktaroglu <tanselbayraktarogl    +#+  +:+       +#+        */
+/*   By: tbayrakt <tbayrakt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 15:23:26 by tanselbayra       #+#    #+#             */
-/*   Updated: 2025/04/11 13:56:20 by tanselbayra      ###   ########.fr       */
+/*   Updated: 2025/04/28 19:15:00 by tbayrakt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-static int is_number(char *str)
+static int	is_number(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str || !str[0])
@@ -28,7 +28,7 @@ static int is_number(char *str)
 	return (1);
 }
 
-static int fill_data(t_data *data, char **argv)
+static int	fill_data(t_data *data, char **argv)
 {
 	data->n_philos = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
@@ -37,17 +37,19 @@ static int fill_data(t_data *data, char **argv)
 	data->max_meals = -1;
 	if (argv[5])
 		data->max_meals = ft_atoi(argv[5]);
-	if (data->n_philos < 1 || data->time_to_die < 0 || data->time_to_eat < 0 || data->time_to_sleep < 0 || (argv[5] && data->max_meals <= 0))
+	if (data->n_philos < 1 || data->time_to_die < 0 || data->time_to_eat < 0
+		|| data->time_to_sleep < 0 || (argv[5] && data->max_meals <= 0))
 		return (1);
 	return (0);
 }
 
-int parse_args(int argc, char **argv, t_data *data)
+int	parse_args(int argc, char **argv, t_data *data)
 {
-	int i;
+	int	i;
 
 	if (argc != 5 && argc != 6)
-		return (error_msg("Usage: ./philo n t_die t_eat t_sleep [max_meals]\n"));
+		return (error_msg("Usage: "
+				"./philo n t_die t_eat t_sleep [max_meals]\n"));
 	i = 1;
 	while (i < argc)
 	{

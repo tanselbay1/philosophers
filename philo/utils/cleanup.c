@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanselbayraktaroglu <tanselbayraktarogl    +#+  +:+       +#+        */
+/*   By: tbayrakt <tbayrakt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 20:55:26 by tanselbayra       #+#    #+#             */
-/*   Updated: 2025/04/08 20:55:35 by tanselbayra      ###   ########.fr       */
+/*   Updated: 2025/04/28 19:05:39 by tbayrakt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void cleanup(t_data *data, t_philo *philos)
+void	cleanup(t_data *data, t_philo *philos)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->n_philos)

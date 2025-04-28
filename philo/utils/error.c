@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanselbayraktaroglu <tanselbayraktarogl    +#+  +:+       +#+        */
+/*   By: tbayrakt <tbayrakt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 20:55:50 by tanselbayra       #+#    #+#             */
-/*   Updated: 2025/04/08 20:55:56 by tanselbayra      ###   ########.fr       */
+/*   Updated: 2025/04/28 19:06:29 by tbayrakt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int error_msg(const char *msg)
+int	error_msg(const char *msg)
 {
-    while (*msg)
-    {
-        write(2, msg, 1); // Write to stderr (file descriptor 2)
-        msg++;
-    }
-    write(2, "\n", 1); // Add a newline
-    return (1);
+	while (*msg)
+	{
+		write(2, msg, 1);
+		msg++;
+	}
+	write(2, "\n", 1);
+	return (1);
 }

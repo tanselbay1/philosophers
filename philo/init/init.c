@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanselbayraktaroglu <tanselbayraktarogl    +#+  +:+       +#+        */
+/*   By: tbayrakt <tbayrakt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 15:38:07 by tanselbayra       #+#    #+#             */
-/*   Updated: 2025/04/14 13:54:24 by tanselbayra      ###   ########.fr       */
+/*   Updated: 2025/04/28 18:52:14 by tbayrakt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-static int init_mutexes(t_data *data)
+static int	init_mutexes(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->n_philos)
@@ -32,9 +32,9 @@ static int init_mutexes(t_data *data)
 	return (0);
 }
 
-static void init_philos(t_data *data, t_philo *philos)
+static void	init_philos(t_data *data, t_philo *philos)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->n_philos)
@@ -49,7 +49,7 @@ static void init_philos(t_data *data, t_philo *philos)
 	}
 }
 
-int init_all(t_data *data, t_philo **philos_out)
+int	init_all(t_data *data, t_philo **philos_out)
 {
 	data->dead = 0;
 	data->full_count = 0;

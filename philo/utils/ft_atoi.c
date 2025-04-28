@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tanselbayraktaroglu <tanselbayraktarogl    +#+  +:+       +#+        */
+/*   By: tbayrakt <tbayrakt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 15:20:24 by tanselbayra       #+#    #+#             */
-/*   Updated: 2025/04/13 18:04:28 by tanselbayra      ###   ########.fr       */
+/*   Updated: 2025/04/28 19:05:45 by tbayrakt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	long result;
-	int i;
+	long	result;
+	int		i;
 
 	result = 0;
 	i = 0;
